@@ -21,3 +21,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/MBDS_BOUKOU_KADRI_ProjetJ2EE-ejb/nbproject/private/
+/MBDS_BOUKOU_KADRI_ProjetJ2EE-war/nbproject/private/
