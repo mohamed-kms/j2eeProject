@@ -30,3 +30,9 @@ hs_err_pid*
 /TP2JSF/nbproject/private/
 /TP2JSF/build/
 /TP2JSF/dist/
+/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-ejb/nbproject/private/
+/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/nbproject/private/
+/MBDS_Boukou_Kadri_Projet_J2EE/nbproject/private/
+*.properties
+MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-ejb/nbproject/private/private.properties
+MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-ejb/nbproject/private/private.properties
