@@ -6,12 +6,17 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,10 +30,20 @@ public class CompteBancaire implements Serializable {
     
     private String nom;
     private int solde;    
+
+    @OneToMany(mappedBy = "compteBancaire")
+    @JoinTable
+  (
+      name="COMPTEBANCAIRE_OPERATION",
+      joinColumns={ @JoinColumn(name="COMPT_ID", referencedColumnName="ID") },
+      inverseJoinColumns={ @JoinColumn(name="OP_ID", referencedColumnName="ID", unique=true) }
+  )
+    private List<Operations> operations;
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
 
     public Long getId() {
@@ -60,6 +75,17 @@ public class CompteBancaire implements Serializable {
         }
     }
 
+    public List<Operations> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operations> operations) {
+        this.operations = operations;
+    }
+
+    
+
+    
     public String getNom() {
         return nom;
     }
@@ -98,8 +124,10 @@ public class CompteBancaire implements Serializable {
 
     @Override
     public String toString() {
-        return "tp3.CompteBancaire[ id=" + id + " ]";
+        return "CompteBancaire{" + "nom=" + nom + ", solde=" + solde + ", operations=" + operations + ", id=" + id + '}';
     }
+
+    
     
     
     

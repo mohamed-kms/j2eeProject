@@ -24,12 +24,24 @@ public class CompteBancaireMBean implements Serializable{
     @EJB
     private GestionDeCompteBancaire gestionDeCompteBancaire;
     
-    public List<CompteBancaire>getComptes(){
+    public List<CompteBancaire> getComptes(){
         return gestionDeCompteBancaire.getAllComptes();
     }
     
     public String showDetails(int compteId){
         return "CompteBancaireDetails?idCompteBancaire = " + compteId;
+    }
+    
+    public String retraitDepot(int compteId){
+        return "ComptesRetraitDepot?id = " + compteId;
+    }
+    
+    public String comptesOperation(int compteId){
+        return "ComptesOperation?id = " + compteId;
+    }
+    
+    public String virement(int compteId){
+        return "CompteVirement?id = " + compteId;
     }
 
     /**

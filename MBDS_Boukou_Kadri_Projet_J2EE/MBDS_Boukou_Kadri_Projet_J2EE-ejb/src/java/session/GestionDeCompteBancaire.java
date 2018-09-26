@@ -45,4 +45,29 @@ public class GestionDeCompteBancaire {
         creerCompte(new CompteBancaire("Ringo Starr", 20000));
         creerCompte(new CompteBancaire("Georges Harrisson", 100000));
     }
+
+    public CompteBancaire update(CompteBancaire compteBancaire) {
+        return em.merge(compteBancaire);
+    }
+
+    public CompteBancaire getCompteBancaire(Long id) {
+        return em.find(CompteBancaire.class, id);
+    }
+
+    public CompteBancaire findById(long id) {
+    return em.find(CompteBancaire.class, id);
+  }
+    
+  public void transferer(CompteBancaire source, CompteBancaire destination, 
+          int montant) {
+    int val = source.retirer(montant);
+    if (val == 0) {
+      // La source n'a plus assez d'argent !!
+      // Il faudrait afficher un message d'erreur.
+      return;
+    }
+    destination.deposer(montant);
+    update(source);
+    update(destination);
+  }
 }
