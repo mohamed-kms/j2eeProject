@@ -8,18 +8,29 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <!--h:outputStylesheet name="./../css/default.css"/>
         <h:outputStylesheet name="./../css/cssLayout.css"/-->
-        <h:outputStylesheet name="./../css/bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <title>Gondw@na BANK</title>
     </h:head>
 
     <h:body>
+        
+        <dir class="container-fluid">
+            <dir class="row">
+                <div class="col-2" id="left">
+                    <ul class="nav flex-column">  
+                        <li class="nav-item"><h:link outcome="index.xhtml" value="accueil"/></li>    
+                        <li class="nav-item"><h:link outcome="ComptesList.xhtml" value="Liste des Comptes"/></li>    
+                    </ul>
+                </div>
 
-        <div id="left">
-            <ui:insert name="left">Left</ui:insert>
-        </div>
-        <div id="content" class="left_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
+                <!--div id="left">
+                    <ui:insert name="left">Left</ui:insert>
+                </div-->
+                <div id="content" class="col-10 left_content">
+                    <ui:insert name="content">Content</ui:insert>
+                </div>
+            </dir>
+        </dir>
 
     </h:body>
 

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./resources/templates/template_default.xhtml"
+                template="./resources/templates/template_nav.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -20,14 +20,24 @@
 
             <h:form>
                 <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
+                <!--h:panelGrid columns="2"-->
+                    
+                <row>
                     <h:outputLabel value="Id:" for="id" />
                     <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/>
+                </row>
+                    
+                <row>
                     <h:outputLabel value="Nom:" for="nom" />
                     <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                </row>
+                    
+                <row>
                     <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
-                </h:panelGrid>
+                </row>
+                    
+                <!--/h:panelGrid-->
                 <ul>  
                     <li><h:link outcome="#{compteBancaireMBean.retraitDepot(compteBancaireOperationMBean.details.id)}" value="Ajouter/Retirer de la Money"/></li>    
                     <li><h:link outcome="#{compteBancaireMBean.virement(compteBancaireOperationMBean.details.id)}" value="Effectuer un virement"/></li>    
