@@ -17,24 +17,29 @@
     <ui:define name="content">
         <f:view>
             
-            <h:panelGroup layout="block" style="width: 30rem;">
+            <h:panelGroup layout="block" style="width: 40rem;">
                 <h:form class="shadow-sm p-3 mb-5 bg-white rounded">
                     <h:outputText class="h1" value="Create/Edit"/>
                     <!--h:panelGrid columns="1"-->
-                        <h:panelGroup layout="block" class="form-group">
-                            <h:outputLabel value="Id:" for="id" />
-                            <!--h:inputText class="form-control" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/-->
-                            <h:outputText class="form-control border-0" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/>
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Id:" for="id" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText readonly="true" class="form-control border-0" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/>
+                            </h:panelGroup>
                         </h:panelGroup>
 
-                        <h:panelGroup layout="block" class="form-group">
-                            <h:outputLabel value="Nom:" for="nom" />
-                            <h:inputText class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                            </h:panelGroup>
                         </h:panelGroup>
 
-                        <h:panelGroup layout="block" class="form-group">
-                            <h:outputLabel value="Solde:" for="solde" />
-                            <h:inputText class="form-control" id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Solde:" for="solde" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText class="form-control" id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                            </h:panelGroup>
                         </h:panelGroup>
                     <!--/h:panelGrid-->
                     <!--ul>  

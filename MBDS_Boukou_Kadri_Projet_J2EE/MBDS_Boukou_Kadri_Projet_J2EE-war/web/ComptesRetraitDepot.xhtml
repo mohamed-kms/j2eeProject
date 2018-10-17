@@ -17,27 +17,57 @@
 
         <f:view>
 
+            <h:panelGroup layout="block" style="width: 40rem;">
+                <h:form class="shadow-sm p-3 bg-white rounded">
+                    <h:outputText class="h1" value="Ajouter/Retirer de la Money"/>
+                    
+                    <!--h:panelGrid columns="2"-->
+                    <h:panelGroup layout="block" class="form-group row">
+                        <h:outputLabel value="Id:" for="id" class="col-sm-2 col-form-label"/>
+                        <h:panelGroup class="col-sm-10">
+                            <h:inputText readonly="true" class="form-control border-0" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup layout="block" class="form-group row">
+                        <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
+                        <h:panelGroup class="col-sm-10">
+                            <h:inputText readonly="true" class="form-control border-0" id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup layout="block" class="form-group row">
+                        <h:outputLabel value="Solde:" for="solde" class="col-sm-2 col-form-label"/>
+                        <h:panelGroup class="col-sm-10">
+                            <h:inputText readonly="true" class="form-control border-0" id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                        </h:panelGroup>
+                    </h:panelGroup>
 
-            <h:form>
-                <h1><h:outputText value="Ajouter/Retirer de la Money"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
-                    <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
-                    <h:outputLabel value="Solde:" for="solde" />
-                    <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:outputLabel value="Operation possible" for="zip"/>
+                        <h:selectOneMenu class="form-control" id="zip" value="#{compteBancaireOperationMBean.operationsPossibles}" title="Type d'operation" required="true" requiredMessage="The Zip field is required."
+                                         >
+                            <f:selectItem itemLabel="Retirer de la Money" itemValue="retirer"/>
+                            <f:selectItem itemLabel="Ajouter de la Money" itemValue="ajouter"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+                        
+                    <h:panelGroup layout="block" class="form-group row">
+                        <h:outputLabel value="Montant" for="nombre" class="col-sm-2 col-form-label"/>
+                        <h:panelGroup class="col-sm-10">
+                            <h:inputText class="form-control" id="nombre" value="#{compteBancaireOperationMBean.montant}" required="true"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:commandButton class="btn btn-primary btn-block" value="Valider" action="#{compteBancaireOperationMBean.effectuerOperation}"/>
+                    </h:panelGroup>
 
-                    <h:selectOneMenu id="zip" value="#{compteBancaireOperationMBean.operationsPossibles}" title="Type d'operation" required="true" requiredMessage="The Zip field is required."
-                                     >
-                        <f:selectItem itemLabel="Retirer de la Money" itemValue="retirer"/>
-                        <f:selectItem itemLabel="Ajouter de la Money" itemValue="ajouter"/>
-                    </h:selectOneMenu>
-                    <h:inputText id="nombre" value="#{compteBancaireOperationMBean.montant}" required="true"/>
-                    <h:commandButton value="Valider" action="#{compteBancaireOperationMBean.effectuerOperation}"/>
-
-                </h:panelGrid>
-            </h:form>
+                    <!--/h:panelGrid-->
+                    
+                </h:form>
+            </h:panelGroup>
+            
         </f:view>
 
 
