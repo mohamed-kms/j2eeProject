@@ -16,27 +16,54 @@
     <ui:define name="content">
         <f:view>
 
+            <h:panelGroup layout="block" style="width: 40rem;">
+                <h:form class="shadow-sm p-3 mb-5 bg-white rounded">
+                    <h:outputText class="h1" value="Effectuer un virement"/>
+                    <!--h:panelGrid columns="2"-->
+                    
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Id:" for="id" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText readonly="true" class="form-control border-0" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText readonly="true" class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Solde:" for="solde" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText readonly="true" class="form-control" id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:outputLabel value="Destinataire" for="compteDestinataire"/>
+                        <h:selectOneMenu class="form-control" id="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}" title="Type d'operation" required="true" requiredMessage="The Zip field is required."
+                                             >
+                            <f:selectItems value="#{compteBancaireOperationMBean.comptes}"
+                                           var="compteDestinataire"
+                                           itemLabel="#{compteDestinataire.id} : #{compteDestinataire.nom}" 
+                                           itemValue="#{compteDestinataire.id}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:outputLabel value="Montant" for="nombre"/>
+                        <h:inputText class="form-control" id="nombre" value="#{compteBancaireOperationMBean.montant}" required="true"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:commandButton class="btn btn-primary btn-block" value="Valider" action="#{compteBancaireOperationMBean.transferer}"/>
+                    </h:panelGroup>
+                    
+                    <!--/h:panelGrid-->
+                </h:form>
+            </h:panelGroup>
 
-            <h:form>
-                <h1><h:outputText value="Effectuer un virement"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
-                    <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
-                    <h:outputLabel value="Solde:" for="solde" />
-                    <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
-                    <h:selectOneMenu id="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}" title="Type d'operation" required="true" requiredMessage="The Zip field is required."
-                                     >
-                        <f:selectItems value="#{compteBancaireOperationMBean.comptes}"
-                                       var="compteDestinataire"
-                                       itemLabel="#{compteDestinataire.id} : #{compteDestinataire.nom}" 
-                                       itemValue="#{compteDestinataire.id}"/>
-                    </h:selectOneMenu>
-                    <h:inputText id="nombre" value="#{compteBancaireOperationMBean.montant}" required="true"/>
-                    <h:commandButton value="Valider" action="#{compteBancaireOperationMBean.transferer}"/>
-                </h:panelGrid>
-            </h:form>
         </f:view>
 
     </ui:define>
