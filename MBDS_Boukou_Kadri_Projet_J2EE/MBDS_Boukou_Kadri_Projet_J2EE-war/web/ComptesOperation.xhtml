@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./resources/templates/template_default.xhtml"
+                template="./resources/templates/template_nav.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -17,8 +17,26 @@
     <ui:define name="content">
 
         <f:view>
+            
+            <h:panelGroup layout="block" style="width: 40rem;">
+                <h:form class="shadow-sm p-3 mb-5 bg-white rounded">
+                    <h:outputText class="h1" value="Mes Operations"/>
+                    <!--h:panelGrid columns="1"-->
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Id:" for="id" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText readonly="true" class="form-control border-0" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/>
+                            </h:panelGroup>
+                        </h:panelGroup>
 
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
+                            </h:panelGroup>
+                        </h:panelGroup>
 
+<<<<<<< HEAD
             <h:form>
                 <h1><h:outputText value="Mes Operations"/></h1>
                 <h:panelGrid columns="2">
@@ -35,6 +53,29 @@
                     <li><h:link outcome="#{compteBancaireMBean.cloturer(compteBancaireOperationMBean.details.id)}" value="Cloturer le compte"/></li>
                 </ul>
             </h:form>
+=======
+                        <h:panelGroup layout="block" class="form-group row">
+                            <h:outputLabel value="Solde:" for="solde" class="col-sm-2 col-form-label"/>
+                            <h:panelGroup class="col-sm-10">
+                                <h:inputText class="form-control" id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    <!--/h:panelGrid-->
+                    <!--ul>  
+                        <li-->
+                    <h:panelGroup class="card border-0">
+                        <h:panelGroup class="card-body">
+                            <h:link class="card-link" outcome="#{compteBancaireMBean.retraitDepot(compteBancaireOperationMBean.details.id)}" value="Ajouter/Retirer de la Money"/>
+                            <h:link class="card-link" outcome="#{compteBancaireMBean.virement(compteBancaireOperationMBean.details.id)}" value="Effectuer un virement"/>
+                            <h:link class="card-link" outcome="#{compteBancaireMBean.cloturer(compteBancaireOperationMBean.details.id)}" value="Cloturer le compte"/>
+                        </h:panelGroup>
+                        <!--h:link class="alert alert-danger card-link" outcome="CloturerCompte.xhtml" value="Cloturer le compte"/-->
+                    </h:panelGroup>
+                        <!--/li>
+                    </ul-->
+                </h:form>
+            </h:panelGroup>
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
 
         </f:view>
 

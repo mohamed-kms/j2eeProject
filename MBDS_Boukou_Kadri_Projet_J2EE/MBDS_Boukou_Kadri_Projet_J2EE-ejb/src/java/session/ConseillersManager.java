@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author mohamed-kms
+ * @author grace
  */
 @Stateless
 @LocalBean
@@ -50,8 +50,4 @@ public class ConseillersManager {
     public Conseillers findById(long id) {
         return em.find(Conseillers.class, id);
     }
-
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }

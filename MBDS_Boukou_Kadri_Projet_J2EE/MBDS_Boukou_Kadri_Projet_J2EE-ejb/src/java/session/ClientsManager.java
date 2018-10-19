@@ -6,7 +6,10 @@
 package session;
 
 import entities.Clients;
+<<<<<<< HEAD
 import entities.Conseillers;
+=======
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -16,7 +19,11 @@ import javax.persistence.Query;
 
 /**
  *
+<<<<<<< HEAD
  * @author mohamed-kms
+=======
+ * @author grace
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
  */
 @Stateless
 @LocalBean
@@ -41,6 +48,7 @@ public class ClientsManager {
         Query q = em.createNamedQuery("Clients.findAll");
         return q.getResultList();
     }
+<<<<<<< HEAD
     
     public List<String> getAllUsernames() {
         Query q = em.createNamedQuery("Clients.findAllUsernames");
@@ -51,6 +59,8 @@ public class ClientsManager {
         Query q = em.createNamedQuery("Clients.findAllPasswords");
         return q.getResultList();
     }
+=======
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
 
     
     public Clients update(Clients client) {
@@ -61,6 +71,7 @@ public class ClientsManager {
         return em.find(Clients.class, id);
     }
 
+<<<<<<< HEAD
     public Clients findById(Long id) {
         return em.find(Clients.class, id);
     }
@@ -74,4 +85,9 @@ public class ClientsManager {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+=======
+    public Clients findById(long id) {
+        return em.find(Clients.class, id);
+    }
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
 }

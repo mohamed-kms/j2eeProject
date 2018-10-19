@@ -38,4 +38,5 @@ public class OperationsManager {
   public void creerOperation(Operations op) {
         persist(op);
     }
+    
 }

@@ -5,6 +5,7 @@
  */
 package managedbeans;
 
+<<<<<<< HEAD
 import entities.Clients;
 import java.io.Serializable;
 import java.util.List;
@@ -32,12 +33,26 @@ public class ClientsMBean implements Serializable{
     public List<Clients> getClients(){
         return clientsManager.getAllClients();
     }
+=======
+import javax.inject.Named;
+import javax.enterprise.context.Dependent;
+
+/**
+ *
+ * @author grace
+ */
+@Named(value = "clientsMBean")
+@Dependent
+public class ClientsMBean {
+
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
     /**
      * Creates a new instance of ClientsMBean
      */
     public ClientsMBean() {
     }
     
+<<<<<<< HEAD
     public List<String> getPasswords(){
         return clientsManager.getAllPasswords();
     }
@@ -126,4 +141,6 @@ public class ClientsMBean implements Serializable{
         return "ComptesCloturer?id = " + compteId;
     }
     
+=======
+>>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
 }
