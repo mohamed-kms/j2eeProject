@@ -6,17 +6,24 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author grace
  */
 @Entity
+@DiscriminatorValue("ADMINISTRATEUR")
 public class Administrateurs extends Personnes implements Serializable {
+    
+    @OneToMany()
+    private List<Conseillers> listConseillers;  // Un administrateurs a des Conseillers
     
     public Administrateurs() {}
     

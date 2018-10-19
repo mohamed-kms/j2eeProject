@@ -5,37 +5,49 @@
  */
 package session;
 
-import entities.Operations;
+import entities.Conseillers;
 import java.util.List;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
- * @author mohamed-kms
+ * @author grace
  */
-
 @Stateless
 @LocalBean
-public class OperationsManager {
-    
+public class ConseillersManager {
+
     @PersistenceContext(unitName = "MBDS_Boukou_Kadri_Projet_J2EE-ejbPU")
     private EntityManager em;
-    
-    public void persist(Object object){
+
+    public void persist(Object object) {
         em.persist(object);
     }
     
-    public List<Operations> getAllOperations(){
-        Query q = em.createNamedQuery("Operations.findAll");
+    
+    /**
+     *
+     * @return
+     */
+    public List<Conseillers> getAllConseillers() {
+        Query q = em.createNamedQuery("Conseillers.findAll");
         return q.getResultList();
     }
+
     
-    public void creerOperation(Operations op) {
-        persist(op);
+    public Conseillers update(Conseillers conseiller) {
+        return em.merge(conseiller);
     }
-    
+
+    public Conseillers getConseiller(Long id) {
+        return em.find(Conseillers.class, id);
+    }
+
+    public Conseillers findById(long id) {
+        return em.find(Conseillers.class, id);
+    }
 }

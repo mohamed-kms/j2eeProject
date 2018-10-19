@@ -33,8 +33,8 @@ public class Operations implements Serializable{
     private Long id;
     
     private String operationName;
+    private int montant;
     
-
     @ManyToOne(fetch=FetchType.LAZY)
     private CompteBancaire compteBancaire;
 
@@ -46,10 +46,21 @@ public class Operations implements Serializable{
     public Operations() {
     }
 
-    public Operations(String operationName, CompteBancaire compteBancaire) {
+    public Operations(String operationName, int montant, CompteBancaire compteBancaire) {
         this.operationName = operationName;
         this.compteBancaire = compteBancaire;
+        this.montant = montant;
     }
+
+    public int getMontant() {
+        return montant;
+    }
+
+    public void setMontant(int montant) {
+        this.montant = montant;
+    }
+    
+    
     
     
 
