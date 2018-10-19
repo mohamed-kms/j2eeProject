@@ -43,6 +43,10 @@ public class CompteBancaireMBean implements Serializable{
     public String virement(int compteId){
         return "CompteVirement?id = " + compteId;
     }
+    
+    public String cloturer(int compteId){
+        return "ComptesCloturer?id = " + compteId;
+    }
 
     /**
      * Creates a new instance of CompteBancaireMBean

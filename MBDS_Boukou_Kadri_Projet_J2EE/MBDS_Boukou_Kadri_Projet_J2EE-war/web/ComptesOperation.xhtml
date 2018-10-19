@@ -19,7 +19,7 @@
             
             <h:panelGroup layout="block" style="width: 40rem;">
                 <h:form class="shadow-sm p-3 mb-5 bg-white rounded">
-                    <h:outputText class="h1" value="Create/Edit"/>
+                    <h:outputText class="h1" value="Mes Operations"/>
                     <!--h:panelGrid columns="1"-->
                         <h:panelGroup layout="block" class="form-group row">
                             <h:outputLabel value="Id:" for="id" class="col-sm-2 col-form-label"/>
@@ -31,7 +31,7 @@
                         <h:panelGroup layout="block" class="form-group row">
                             <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
                             <h:panelGroup class="col-sm-10">
-                                <h:inputText class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                                <h:inputText class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
                             </h:panelGroup>
                         </h:panelGroup>
 
@@ -48,8 +48,9 @@
                         <h:panelGroup class="card-body">
                             <h:link class="card-link" outcome="#{compteBancaireMBean.retraitDepot(compteBancaireOperationMBean.details.id)}" value="Ajouter/Retirer de la Money"/>
                             <h:link class="card-link" outcome="#{compteBancaireMBean.virement(compteBancaireOperationMBean.details.id)}" value="Effectuer un virement"/>
+                            <h:link class="card-link" outcome="#{compteBancaireMBean.cloturer(compteBancaireOperationMBean.details.id)}" value="Cloturer le compte"/>
                         </h:panelGroup>
-                        <h:link class="alert alert-danger card-link" outcome="CloturerCompte.xhtml" value="Cloturer le compte"/>
+                        <!--h:link class="alert alert-danger card-link" outcome="CloturerCompte.xhtml" value="Cloturer le compte"/-->
                     </h:panelGroup>
                         <!--/li>
                     </ul-->

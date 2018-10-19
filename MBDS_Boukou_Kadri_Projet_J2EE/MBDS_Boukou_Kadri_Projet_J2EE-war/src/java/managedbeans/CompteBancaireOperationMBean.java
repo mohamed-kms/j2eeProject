@@ -114,8 +114,10 @@ public class CompteBancaireOperationMBean implements Serializable {
     public void effectuerOperation(){
         if(operationsPossibles.equals("ajouter")){
             compteBancaire.deposer(montant);
+            operationsManager.creerOperation(new Operations(operationsPossibles, montant, compteBancaire));
         }else{
             compteBancaire.retirer(montant);
+            operationsManager.creerOperation(new Operations(operationsPossibles, montant, compteBancaire));
         }
         compteBancaireManager.update(compteBancaire);
     }
@@ -151,7 +153,7 @@ public class CompteBancaireOperationMBean implements Serializable {
       double soldeCompteSource = compteSource.getSolde();
       if (soldeCompteSource < montant) {
         String msg = "Pas assez d'argent sur le compte de "
-                + compteSource.getNom();
+                + compteSource.getProprietaires();
         FacesMessage facesMsg =
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
         FacesContext.getCurrentInstance().addMessage("transfert:montant", facesMsg);
@@ -159,9 +161,16 @@ public class CompteBancaireOperationMBean implements Serializable {
       }
     }
     if (ok) {
+        operationsManager.creerOperation(new Operations("virement rentrant", montant, compteSource));
+        operationsManager.creerOperation(new Operations("virement sortant", montant, compteDestination));
       compteBancaireManager.transferer(compteSource, compteDestination,
               montant);
     }
+  }
+    
+    public String cloturerCompte() {
+    compteBancaireManager.cloturerCompte(compteBancaire);
+    return null;
   }
     
 }

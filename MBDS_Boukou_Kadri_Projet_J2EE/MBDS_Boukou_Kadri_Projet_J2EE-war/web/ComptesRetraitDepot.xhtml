@@ -10,6 +10,7 @@
             <f:viewParam name="id" value="#{compteBancaireOperationMBean.id}"
                          required="true"/>
             <f:viewAction action="#{compteBancaireOperationMBean.loadCompteBancaire()}"/>
+            <f:viewParam name="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}"/>
         </f:metadata> 
     </ui:define>
 
@@ -19,7 +20,7 @@
 
             <h:panelGroup layout="block" style="width: 40rem;">
                 <h:form class="shadow-sm p-3 bg-white rounded">
-                    <h:outputText class="h1" value="Ajouter/Retirer de la Money"/>
+                    <h:outputText class="h1" value="Mes Operations"/>
                     
                     <!--h:panelGrid columns="2"-->
                     <h:panelGroup layout="block" class="form-group row">
@@ -32,7 +33,7 @@
                     <h:panelGroup layout="block" class="form-group row">
                         <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
                         <h:panelGroup class="col-sm-10">
-                            <h:inputText readonly="true" class="form-control border-0" id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                            <h:inputText readonly="true" class="form-control border-0" id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
                         </h:panelGroup>
                     </h:panelGroup>
                     
