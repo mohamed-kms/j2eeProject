@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Clients Login Page</title>
+    </h:head>
+    <f:metadata>
+            <f:viewParam name="id" value="1"
+                         required="true"/>
+            <f:viewAction action="#{clientsMBean.loadClient()}"/>
+        </f:metadata> 
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Username:" for="username" />
+                    <h:inputText id="username" value="#{clientsMBean.username}" title="Username" />
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputSecret id="password" value="#{clientsMBean.password}" title="Password" />
+                    <h:commandButton value="Valider" action="#{clientsMBean.checkLogin()}"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
