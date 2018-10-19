@@ -5,8 +5,13 @@
  */
 package session;
 
+import entities.Clients;
 import entities.CompteBancaire;
+import entities.Conseillers;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -40,10 +45,29 @@ public class GestionDeCompteBancaire {
     }
 
     public void creerComptesTest() {
-        creerCompte(new CompteBancaire("John Lennon", 150000));
-        creerCompte(new CompteBancaire("Paul McCartney", 950000));
-        creerCompte(new CompteBancaire("Ringo Starr", 20000));
-        creerCompte(new CompteBancaire("Georges Harrisson", 100000));
+        Clients client1 = new Clients("John", "Lennon", "ATL");
+        Clients client2 = new Clients("Aaron", "Lennon", "ATL");
+        Clients client3 = new Clients("Shawn", "Lewis", "ATL");
+        Clients client4 = new Clients("Deborrah", "Bridle", "ATL");
+        Conseillers c = new Conseillers("Dwayne", "Johnson", "ATL");
+        Conseillers c1 = new Conseillers("Dominique", "Terroto", "ATL");
+        Set<Clients> proprietaires1 = new HashSet<>();
+        Set<Clients> proprietaires2 = new HashSet<>();
+        Set<Clients> proprietaires3 = new HashSet<>();
+
+        proprietaires1.add(client2);
+        proprietaires1.add(client1);
+
+        proprietaires2.add(client1);
+        proprietaires2.add(client4);
+
+        proprietaires3.add(client4);
+        proprietaires3.add(client3);
+        proprietaires3.add(client2);
+        creerCompte(new CompteBancaire(proprietaires1, 150000, c));
+        creerCompte(new CompteBancaire(proprietaires2, 150000, c1));
+        creerCompte(new CompteBancaire(proprietaires3, 150000, c));
+
     }
 
     public CompteBancaire update(CompteBancaire compteBancaire) {
@@ -55,19 +79,23 @@ public class GestionDeCompteBancaire {
     }
 
     public CompteBancaire findById(long id) {
-    return em.find(CompteBancaire.class, id);
-  }
-    
-  public void transferer(CompteBancaire source, CompteBancaire destination, 
-          int montant) {
-    int val = source.retirer(montant);
-    if (val == 0) {
-      // La source n'a plus assez d'argent !!
-      // Il faudrait afficher un message d'erreur.
-      return;
+        return em.find(CompteBancaire.class, id);
     }
-    destination.deposer(montant);
-    update(source);
-    update(destination);
-  }
+
+    public void transferer(CompteBancaire source, CompteBancaire destination,
+            int montant) {
+        int val = source.retirer(montant);
+        if (val == 0) {
+            // La source n'a plus assez d'argent !!
+            // Il faudrait afficher un message d'erreur.
+            return;
+        }
+        destination.deposer(montant);
+        update(source);
+        update(destination);
+    }
+
+    public void cloturerCompte(CompteBancaire compteBancaire) {
+        em.remove(em.merge(compteBancaire));
+    }
 }

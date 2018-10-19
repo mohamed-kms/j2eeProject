@@ -6,14 +6,20 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,23 +34,28 @@ import javax.persistence.OneToMany;
 public class CompteBancaire implements Serializable {
 
     
-    private String nom;
     private int solde;    
-
-    @OneToMany(mappedBy = "compteBancaire")
-    @JoinTable
-  (
-      name="COMPTEBANCAIRE_OPERATION",
-      joinColumns={ @JoinColumn(name="COMPT_ID", referencedColumnName="ID") },
-      inverseJoinColumns={ @JoinColumn(name="OP_ID", referencedColumnName="ID", unique=true) }
-  )
-    private List<Operations> operations;
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
+
+    @OneToMany(mappedBy = "compteBancaire", cascade = CascadeType.ALL)
+    private List<Operations> operations;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Clients> proprietaires;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Conseillers conseiller;
+
+    public CompteBancaire(Set<Clients> proprietaires, int solde, Conseillers conseiller) {
+        this.solde = solde;
+        this.proprietaires = proprietaires;
+        this.conseiller = conseiller;
+    }
 
     public Long getId() {
         return id;
@@ -55,11 +66,6 @@ public class CompteBancaire implements Serializable {
     }
     
     public CompteBancaire() {
-    }
-
-    public CompteBancaire(String nom, int solde) {
-        this.nom = nom;
-        this.solde = solde;
     }
     
     public void deposer(int montant){
@@ -83,51 +89,49 @@ public class CompteBancaire implements Serializable {
         this.operations = operations;
     }
 
-    
-
-    
-    public String getNom() {
-        return nom;
-    }
-
     public int getSolde() {
         return solde;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public void setSolde(int solde) {
         this.solde = solde;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public Set<Clients> getProprietaires() {
+        return proprietaires;
+    }
+    
+    public String printProps(){
+        String props = "";
+        for(Iterator<Clients> it = proprietaires.iterator(); it.hasNext();){
+            Clients c = it.next();
+            props += c.getNom() + " " + c.getPrenom() + "\n\n\n\n\n\n";
+        }
+        String msg = "Ce compte n'existe pas";
+        FacesMessage facesMsg =
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+        FacesContext.getCurrentInstance().addMessage("Compte", facesMsg);
+        return props;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CompteBancaire)) {
-            return false;
-        }
-        CompteBancaire other = (CompteBancaire) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setProprietaires(Set<Clients> proprietaires) {
+        this.proprietaires = proprietaires;
     }
+
+    public Conseillers getConseiller() {
+        return conseiller;
+    }
+
+    public void setConseiller(Conseillers conseiller) {
+        this.conseiller = conseiller;
+    }
+    
+    
 
     @Override
     public String toString() {
-        return "CompteBancaire{" + "nom=" + nom + ", solde=" + solde + ", operations=" + operations + ", id=" + id + '}';
+        return "CompteBancaire{" + "id=" + id + ", proprietaires=" + proprietaires + ", solde=" + solde + ", conseiller=" + conseiller + '}';
     }
-
-    
     
     
     

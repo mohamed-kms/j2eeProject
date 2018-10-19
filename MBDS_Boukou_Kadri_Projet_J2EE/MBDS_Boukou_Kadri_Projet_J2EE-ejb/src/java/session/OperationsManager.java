@@ -5,6 +5,7 @@
  */
 package session;
 
+import entities.CompteBancaire;
 import entities.Operations;
 import java.util.List;
 import javax.ejb.LocalBean;
@@ -34,4 +35,7 @@ public class OperationsManager {
         return q.getResultList();
     }
     
+  public void creerOperation(Operations op) {
+        persist(op);
+    }
 }

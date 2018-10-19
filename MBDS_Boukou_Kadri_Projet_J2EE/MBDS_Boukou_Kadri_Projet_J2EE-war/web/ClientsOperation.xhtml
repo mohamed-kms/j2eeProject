@@ -7,27 +7,28 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="id" value="#{compteBancaireOperationMBean.id}"
+            <f:viewParam name="id" value="#{clientsMBean.id}"
                          required="true"/>
-            <f:viewAction action="#{compteBancaireOperationMBean.loadCompteBancaire()}"/>
-            <f:viewParam name="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}"/>
+            <f:viewAction action="#{clientsMBean.loadClient()}"/>
         </f:metadata> 
     </ui:define>
 
     <ui:define name="content">
-
+        
         <f:view>
 
 
             <h:form>
-                <h1><h:outputText value="Mes Operations"/></h1>
+                <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/>
+                    <h:outputText id="id" value="#{clientsMBean.id}" title="Id" />
                     <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
-                    <h:outputLabel value="Solde:" for="solde" />
-                    <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                    <h:inputText id="nom" value="#{clientsMBean.client.nom}" title="Nom" />
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText id="prenom" value="#{clientsMBean.client.prenom}" title="Prenom" />
+                    <h:outputLabel value="Adresse:" for="adresse" />
+                    <h:inputText id="adresse" value="#{clientsMBean.client.adresse}" title="Adresse" />
                 </h:panelGrid>
                 <ul>  
                     <li><h:link outcome="#{compteBancaireMBean.retraitDepot(compteBancaireOperationMBean.details.id)}" value="Ajouter/Retirer de la Money"/></li>    
@@ -35,7 +36,6 @@
                     <li><h:link outcome="#{compteBancaireMBean.cloturer(compteBancaireOperationMBean.details.id)}" value="Cloturer le compte"/></li>
                 </ul>
             </h:form>
-
         </f:view>
 
 

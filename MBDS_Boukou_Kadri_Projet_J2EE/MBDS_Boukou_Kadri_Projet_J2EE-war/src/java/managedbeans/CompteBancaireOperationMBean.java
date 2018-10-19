@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import session.ClientsManager;
 import session.GestionDeCompteBancaire;
 import session.OperationsManager;
 
@@ -25,11 +26,36 @@ import session.OperationsManager;
 @ViewScoped
 public class CompteBancaireOperationMBean implements Serializable {
 
+    // Variables de la classe
     private Long id;
     private Long compteDestinataire;
     private CompteBancaire compteBancaire;
+    private String operationsPossibles;
     private int montant;
+    
+    // Les EJB
+    
+    @EJB
+    private GestionDeCompteBancaire compteBancaireManager;
 
+    @EJB
+    private OperationsManager operationsManager;
+    
+    @EJB
+    private ClientsManager clientsManager;    
+    
+    
+    /**
+     * Les Getters et Setters
+     * @return 
+     */
+
+    /* Relatifs aux Comptes bancaires */
+    
+     public List<CompteBancaire> getComptes(){
+        return compteBancaireManager.getAllComptes();
+    }
+     
     public Long getCompteDestinataire() {
         return compteDestinataire;
     }
@@ -38,26 +64,16 @@ public class CompteBancaireOperationMBean implements Serializable {
         this.compteDestinataire = compteDestinataire;
     }
     
+    /* Relatifs aux Opérations */
     
-    
-    private String operationsPossibles;
-
-    public String getOperationsPossibles() {
-        return operationsPossibles;
+    public Long getId() {
+        return id;
     }
 
-    public void setOperationsPossibles(String operationsPossibles) {
-        this.operationsPossibles = operationsPossibles;
-    }
-
-    public List<CompteBancaire> getComptes(){
-        return compteBancaireManager.getAllComptes();
+    public void setId(Long id) {
+        this.id = id;
     }
     
-    public CompteBancaireOperationMBean() {
-  
-    }
-
     public int getMontant() {
         return montant;
     }
@@ -66,27 +82,26 @@ public class CompteBancaireOperationMBean implements Serializable {
         this.montant = montant;
     }
     
-    
-    
-    
-
-    @EJB
-    private GestionDeCompteBancaire compteBancaireManager;
-
-    @EJB
-    private OperationsManager operationsManager;
-    
 
     public List<Operations> getOperations() {
         return operationsManager.getAllOperations();
     }
-
-    public Long getId() {
-        return id;
+    
+    public String getOperationsPossibles() {
+        return operationsPossibles;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOperationsPossibles(String operationsPossibles) {
+        this.operationsPossibles = operationsPossibles;
+    }
+    
+    /* Relatifs aux clients */
+    
+    /* Relatifs aux Conseillers */
+   
+    
+    public CompteBancaireOperationMBean() {
+  
     }
     
     public CompteBancaire getDetails(){
@@ -114,8 +129,10 @@ public class CompteBancaireOperationMBean implements Serializable {
     public void effectuerOperation(){
         if(operationsPossibles.equals("ajouter")){
             compteBancaire.deposer(montant);
+            operationsManager.creerOperation(new Operations(operationsPossibles, montant, compteBancaire));
         }else{
             compteBancaire.retirer(montant);
+            operationsManager.creerOperation(new Operations(operationsPossibles, montant, compteBancaire));
         }
         compteBancaireManager.update(compteBancaire);
     }
@@ -151,7 +168,7 @@ public class CompteBancaireOperationMBean implements Serializable {
       double soldeCompteSource = compteSource.getSolde();
       if (soldeCompteSource < montant) {
         String msg = "Pas assez d'argent sur le compte de "
-                + compteSource.getNom();
+                + compteSource.getProprietaires();
         FacesMessage facesMsg =
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
         FacesContext.getCurrentInstance().addMessage("transfert:montant", facesMsg);
@@ -159,9 +176,16 @@ public class CompteBancaireOperationMBean implements Serializable {
       }
     }
     if (ok) {
+        operationsManager.creerOperation(new Operations("virement rentrant", montant, compteSource));
+        operationsManager.creerOperation(new Operations("virement sortant", montant, compteDestination));
       compteBancaireManager.transferer(compteSource, compteDestination,
               montant);
     }
+  }
+    
+    public String cloturerCompte() {
+    compteBancaireManager.cloturerCompte(compteBancaire);
+    return null;
   }
     
 }

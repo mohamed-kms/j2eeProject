@@ -10,34 +10,31 @@
             <f:viewParam name="id" value="#{compteBancaireOperationMBean.id}"
                          required="true"/>
             <f:viewAction action="#{compteBancaireOperationMBean.loadCompteBancaire()}"/>
-            <f:viewParam name="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}"/>
-        </f:metadata> 
+        </f:metadata>
     </ui:define>
 
     <ui:define name="content">
-
         <f:view>
 
 
             <h:form>
-                <h1><h:outputText value="Mes Operations"/></h1>
+                <h1><h:outputText value="Cloture de compte"/></h1>
+                        <h2>Voulez-vous vraiment supprimer le compte suivant?</h2>
+
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id"/>
+                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
                     <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
+                    <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
                     <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                    <h:commandButton value="OUI" action="#{compteBancaireOperationMBean.cloturerCompte}"/>
+                    <h:commandButton value="NON" action="ComptesList.xhtml"/>
+
+
                 </h:panelGrid>
-                <ul>  
-                    <li><h:link outcome="#{compteBancaireMBean.retraitDepot(compteBancaireOperationMBean.details.id)}" value="Ajouter/Retirer de la Money"/></li>    
-                    <li><h:link outcome="#{compteBancaireMBean.virement(compteBancaireOperationMBean.details.id)}" value="Effectuer un virement"/></li>    
-                    <li><h:link outcome="#{compteBancaireMBean.cloturer(compteBancaireOperationMBean.details.id)}" value="Cloturer le compte"/></li>
-                </ul>
             </h:form>
-
         </f:view>
-
 
     </ui:define>
 
