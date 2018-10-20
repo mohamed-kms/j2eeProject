@@ -69,7 +69,7 @@ public class CompteBancaire implements Serializable {
     }
     
     public void deposer(int montant){
-        solde += montant;
+        this.solde += montant;
     }
     
     public int retirer(int montant){

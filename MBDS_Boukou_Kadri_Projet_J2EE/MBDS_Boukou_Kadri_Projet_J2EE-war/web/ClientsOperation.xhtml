@@ -19,10 +19,10 @@
 
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
+                <h1><h:outputText value="MES OPERATIONS"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
-                    <h:outputText id="id" value="#{clientsMBean.id}" title="Id" />
+                    <h:outputText id="id" value="#{clientsMBean.client.id}" title="Id" />
                     <h:outputLabel value="Nom:" for="nom" />
                     <h:inputText id="nom" value="#{clientsMBean.client.nom}" title="Nom" />
                     <h:outputLabel value="Prenom:" for="prenom" />
@@ -31,9 +31,9 @@
                     <h:inputText id="adresse" value="#{clientsMBean.client.adresse}" title="Adresse" />
                 </h:panelGrid>
                 <ul>  
-                    <li><h:link outcome="#{compteBancaireMBean.retraitDepot(compteBancaireOperationMBean.details.id)}" value="Ajouter/Retirer de la Money"/></li>    
-                    <li><h:link outcome="#{compteBancaireMBean.virement(compteBancaireOperationMBean.details.id)}" value="Effectuer un virement"/></li>    
-                    <li><h:link outcome="#{compteBancaireMBean.cloturer(compteBancaireOperationMBean.details.id)}" value="Cloturer le compte"/></li>
+                    <li><h:link outcome="#{clientsMBean.retraitDepot()}" value="Ajouter/Retirer de la Money"/></li>    
+                    <li><h:link outcome="#{clientsMBean.virement()}" value="Effectuer un virement"/></li>    
+                    <li><h:link outcome="#{compteBancaireMBean.cloturer(clientsMBean.compteChoisi.id)}" value="Cloturer le compte"/></li>
                 </ul>
             </h:form>
         </f:view>

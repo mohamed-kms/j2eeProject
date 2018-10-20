@@ -47,7 +47,7 @@ public class ConseillersManager {
         return em.find(Conseillers.class, id);
     }
 
-    public Conseillers findById(long id) {
+    public Conseillers findById(Long id) {
         return em.find(Conseillers.class, id);
     }
 }

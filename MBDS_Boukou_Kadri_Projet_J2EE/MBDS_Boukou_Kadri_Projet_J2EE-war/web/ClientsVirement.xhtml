@@ -22,6 +22,42 @@
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
+                    <h:inputText id="id" value="#{clientsMBean.client.id}" title="Id" />
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText id="nom" value="#{clientsMBean.client.nom}" title="Nom" />
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText id="prenom" value="#{clientsMBean.client.prenom}" title="Prenom" />
+                    <h:outputLabel value="Adresse:" for="adresse" />
+                    <h:inputText id="adresse" value="#{clientsMBean.client.adresse}" title="Adresse" />
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:outputLabel value="Destinataire" for="compteDestinataire"/>
+                        <h:selectOneMenu class="form-control" id="compteDestinataire" value="#{clientsMBean.compteDestinataire}" title="Type d'operation" required="true" requiredMessage="The Zip field is required."
+                                             >
+                            <f:selectItems value="#{clientsMBean.compteBancaireManager.allComptes}"
+                                           var="compteDestinataire"
+                                           itemLabel="#{compteDestinataire.id} : #{compteDestinataire.proprietaires}" 
+                                           itemValue="#{compteDestinataire.id}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:outputLabel value="Montant" for="nombre"/>
+                        <h:inputText class="form-control" id="nombre" value="#{clientsMBean.montant}" required="true"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" class="form-group">
+                        <h:commandButton class="btn btn-primary btn-block" value="Valider" action="#{clientsMBean.transferer}"/>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+        
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Id:" for="id" />
                     <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
                     <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />

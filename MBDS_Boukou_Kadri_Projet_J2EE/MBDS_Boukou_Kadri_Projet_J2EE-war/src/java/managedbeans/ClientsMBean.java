@@ -5,14 +5,17 @@
  */
 package managedbeans;
 
-<<<<<<< HEAD
 import entities.Clients;
+import entities.CompteBancaire;
+import entities.Operations;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import session.ClientsManager;
+import session.GestionDeCompteBancaire;
+import session.OperationsManager;
 
 /**
  *
@@ -26,33 +29,35 @@ public class ClientsMBean implements Serializable{
     private Clients client;
     private String username;
     private String password;
+    private Long idCompteChoisi;
+    private CompteBancaire compteChoisi;
+    private String operationsPossibles;
+        private int montant;
+
+
     
     @EJB
     private ClientsManager clientsManager;
+    
+    @EJB
+    private OperationsManager operationsManager;
+    
+    @EJB
+    private GestionDeCompteBancaire compteBancaireManager;
 
+    public Long getIdCompteChoisi() {
+        return idCompteChoisi;
+    }
+
+    public void setIdCompteChoisi(Long idCompteChoisi) {
+        this.idCompteChoisi = idCompteChoisi;
+    }
+
+    
     public List<Clients> getClients(){
         return clientsManager.getAllClients();
     }
-=======
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-
-/**
- *
- * @author grace
- */
-@Named(value = "clientsMBean")
-@Dependent
-public class ClientsMBean {
-
->>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
-    /**
-     * Creates a new instance of ClientsMBean
-     */
-    public ClientsMBean() {
-    }
     
-<<<<<<< HEAD
     public List<String> getPasswords(){
         return clientsManager.getAllPasswords();
     }
@@ -60,6 +65,63 @@ public class ClientsMBean {
     public List<String> getUsernames(){
         return clientsManager.getAllUsernames();
     }
+
+    public CompteBancaire getCompteChoisi() {
+        return compteChoisi;
+    }
+
+    public void setCompteChoisi(CompteBancaire compteChoisi) {
+        this.compteChoisi = compteChoisi;
+    }
+
+    public String getOperationsPossibles() {
+        return operationsPossibles;
+    }
+
+    public void setOperationsPossibles(String operationsPossibles) {
+        this.operationsPossibles = operationsPossibles;
+    }
+
+    public String effectuerOperation(){
+        CompteBancaire compteDestination =
+            compteBancaireManager.findById((long) idCompteChoisi);
+        if(operationsPossibles.equals("ajouter")){
+            compteDestination.deposer(montant);
+            operationsManager.creerOperation(new Operations(operationsPossibles, montant, compteDestination));
+        }else{
+            compteDestination.retirer(montant);
+            operationsManager.creerOperation(new Operations(operationsPossibles, montant, compteDestination));
+        }
+        compteBancaireManager.update(compteDestination);
+        return clientsOperation(id);
+    }    
+
+    public int getMontant() {
+        return montant;
+    }
+
+    public void setMontant(int montant) {
+        this.montant = montant;
+    }
+
+    public OperationsManager getOperationsManager() {
+        return operationsManager;
+    }
+
+    public void setOperationsManager(OperationsManager operationsManager) {
+        this.operationsManager = operationsManager;
+    }
+
+    public GestionDeCompteBancaire getCompteBancaireManager() {
+        return compteBancaireManager;
+    }
+
+    public void setCompteBancaireManager(GestionDeCompteBancaire compteBancaireManager) {
+        this.compteBancaireManager = compteBancaireManager;
+    }
+    
+    
+    
 
     public Long getId() {
         return id;
@@ -125,22 +187,20 @@ public class ClientsMBean {
         }
     }
     
-    public String retraitDepot(Long compteId){
-        return "ComptesRetraitDepot?id = " + compteId;
+    public String retraitDepot(){
+        return "ClientsRetraitDepot";
     }
     
     public String comptesOperation(Long compteId){
         return "ComptesOperation?id = " + compteId;
     }
     
-    public String virement(Long compteId){
-        return "CompteVirement?id = " + compteId;
+    public String virement(){
+        return "ClientsVirement";
     }
     
     public String cloturer(Long compteId){
         return "ComptesCloturer?id = " + compteId;
     }
-    
-=======
->>>>>>> 4c1b497b79b06ec2472bc9dbdb9c95d8d0a68b2a
+
 }
