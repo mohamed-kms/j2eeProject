@@ -5,6 +5,7 @@
  */
 package session;
 
+import entities.Clients;
 import entities.Conseillers;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -36,6 +37,22 @@ public class ConseillersManager {
     public List<Conseillers> getAllConseillers() {
         Query q = em.createNamedQuery("Conseillers.findAll");
         return q.getResultList();
+    }
+    
+    public List<String> getAllUsernames() {
+        Query q = em.createNamedQuery("Conseillers.findAllUsernames");
+        return q.getResultList();
+    }
+    
+    public List<String> getAllPasswords(){
+        Query q = em.createNamedQuery("Conseillers.findAllPasswords");
+        return q.getResultList();
+    }
+    
+    public Conseillers findByUsername(String username){
+        Query q = em.createQuery("SELECT c FROM Conseillers c WHERE c.username = :username");
+        q.setParameter("username", username);
+        return (Conseillers) q.getResultList().get(0);
     }
 
     
