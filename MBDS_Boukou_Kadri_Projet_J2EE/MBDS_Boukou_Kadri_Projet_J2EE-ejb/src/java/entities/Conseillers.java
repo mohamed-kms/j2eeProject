@@ -18,12 +18,19 @@ import javax.persistence.OneToMany;
  * @author grace
  */
 @NamedQueries({
-    @NamedQuery(name = "Conseillers.findAll", query = "SELECT d FROM Conseillers d")
-})
+    @NamedQuery(name = "Conseillers.findAll", query = "SELECT d FROM Conseillers d"),
+    @NamedQuery(name = "Conseillers.findByConseillerId", query = "SELECT c FROM Conseillers c WHERE c.id = :id"),
+    @NamedQuery(name = "Conseillers.findAllUsernames", query = "SELECT c.username FROM Conseillers c"),
+    @NamedQuery(name = "Conseillers.findAllPasswords", query = "SELECT c.password FROM Conseillers c"),
+    @NamedQuery(name = "Conseillers.findByUsername", query = "SELECT c FROM Conseillers c WHERE c.username = :username")})
+
 @Entity
 @DiscriminatorValue("CONSEILLERS")
 public class Conseillers extends Personnes implements Serializable {
  
+    private String username;
+    private String password;
+    
     @OneToMany()
     private List<CompteBancaire> comptesGeres;
 
@@ -31,8 +38,27 @@ public class Conseillers extends Personnes implements Serializable {
     
     public Conseillers(String nom, String prenom, String adresse) {
         super(nom, prenom, adresse);
+        this.username = nom + "CONS" + id;
+        this.password = prenom + "cpswd" + id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
+   
     @Override
     public String toString() {
         return "Conseiller{" + "Nom : " + getNom() + " "
