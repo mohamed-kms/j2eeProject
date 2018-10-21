@@ -8,6 +8,7 @@ package session;
 import entities.Clients;
 import entities.CompteBancaire;
 import entities.Conseillers;
+import entities.Operations;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -93,6 +94,12 @@ public class GestionDeCompteBancaire {
         destination.deposer(montant);
         update(source);
         update(destination);
+    }
+    
+    public List<Operations> findMesOperations(Long id){
+        Query q = em.createNamedQuery("SELECT o FROM Operations o WHERE o.compteBancaire_id = :id");
+        q.setParameter("id", id);
+        return q.getResultList();
     }
 
     public void cloturerCompte(CompteBancaire compteBancaire) {

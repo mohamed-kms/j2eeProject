@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./resources/templates/template_default.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="metadata">
+        
+    </ui:define>
+
+    <ui:define name="left">
+        <ul>  
+            <li><h:link outcome="AdminsOperation.xhtml" value="accueil"/></li>    
+            <li><h:link outcome="ComptesListForAdmin.xhtml" value="Liste de tous les Comptes"/></li>    
+            <li><h:link outcome="ClientsList.xhtml" value="Liste de tous les Clients"/></li>    
+            <li><h:link outcome="ConseillersListForAdmin.xhtml" value="Liste de tous les Conseillers"/></li>    
+            <li><h:link outcome="AdminsList.xhtml" value="Liste de tous les Administrateurs"/></li>    
+            <li><h:link outcome="CreerConseiller.xhtml" value="Créer nouveau conseiller"/></li>    
+            <li><h:link outcome="CreerAdmin.xhtml" value="Créer nouvel administrateur"/></li>    
+            <li><h:link outcome="AccountTypeChoice.xhtml" value="Déconnexion"/></li>
+        </ul>
+    </ui:define>
+
+    <ui:define name="content">
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText id="nom" value="#{administrateursMBean.newAdminNom}" title="Nom" />
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText id="prenom" value="#{administrateursMBean.newAdminPrenom}" title="Prenom" />
+                    <h:outputLabel value="Adresse:" for="adresse" />
+                    <h:inputText id="adresse" value="#{administrateursMBean.newAdminAdresse}" title="Adresse" />
+                </h:panelGrid>
+                <h:commandButton value="Créer Conseiller" action="#{administrateursMBean.creerConseiller()}"/>
+            </h:form>
+        </f:view>
+
+    </ui:define>
+
+</ui:composition>

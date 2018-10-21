@@ -19,13 +19,12 @@
 
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
+                <h1><h:outputText value="Effectuer un virement"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
                     <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
                     <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
-                    <h:outputLabel value="Conseiller:" for="conseiller" />
                     <h:panelGroup layout="block" class="form-group">
                         <h:outputLabel value="Destinataire" for="compteDestinataire"/>
                         <h:selectOneMenu class="form-control" id="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}" title="Type d'operation" required="true" requiredMessage="The Zip field is required."

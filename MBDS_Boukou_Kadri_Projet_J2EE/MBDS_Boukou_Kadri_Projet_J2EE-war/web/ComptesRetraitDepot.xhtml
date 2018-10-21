@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./resources/templates/template_nav.xhtml"
+                template="./resources/templates/template_default.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -13,56 +13,41 @@
             <f:viewParam name="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}"/>
         </f:metadata> 
     </ui:define>
+    
+    <ui:define name="left">
+        <ul>  
+            <li><h:link outcome="ConseillersOperation.xhtml" value="accueil"/></li>    
+            <li><h:link outcome="#{conseillersMBean.comptesGeres()}" value="Liste des comptes gérés"/></li>    
+            <li><h:link outcome="CreerClient.xhtml" value="Ouverture de compte"/></li>    
+            <li><h:link outcome="AccountTypeChoice.xhtml" value="Déconnexion"/></li>
+        </ul>
+    </ui:define>
 
     <ui:define name="content">
-        
-        
+
         <f:view>
 
-            <h:panelGroup layout="block" style="width: 40rem;">
-                <h:form class="shadow-sm p-3 bg-white rounded">
-                    <h:outputText class="h1" value="Mes Operations"/>
-                    
-                    <!--h:panelGrid columns="2"-->
-                    <h:panelGroup layout="block" class="form-group row">
-                        <h:outputLabel value="Id:" for="id" class="col-sm-2 col-form-label"/>
-                        <h:panelGroup class="col-sm-10">
-                            <h:inputText readonly="true" class="form-control border-0" id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
-                        </h:panelGroup>
-                    </h:panelGroup>
-                    
-                    <h:panelGroup layout="block" class="form-group row">
-                        <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
-                        <h:panelGroup class="col-sm-10">
-                            <h:inputText readonly="true" class="form-control border-0" id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
-                        </h:panelGroup>
-                    </h:panelGroup>
-                    
-                    <h:panelGroup layout="block" class="form-group row">
-                        <h:outputLabel value="Solde:" for="solde" class="col-sm-2 col-form-label"/>
-                        <h:panelGroup class="col-sm-10">
-                            <h:inputText readonly="true" class="form-control border-0" id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
-                        </h:panelGroup>
-                    </h:panelGroup>
-                        
-                    <h:panelGroup layout="block" class="form-group row">
-                        <h:outputLabel value="Montant" for="nombre" class="col-sm-2 col-form-label"/>
-                        <h:panelGroup class="col-sm-10">
-                            <h:inputText class="form-control" id="nombre" value="#{compteBancaireOperationMBean.montant}" required="true"/>
-                        </h:panelGroup>
-                    </h:panelGroup>
-                    
-                    <h:panelGroup layout="block" class="form-group">
-                        <h:commandButton class="btn btn-primary btn-block" value="Valider" action="#{compteBancaireOperationMBean.effectuerOperation}"/>
-                    </h:panelGroup>
 
-                    <!--/h:panelGrid-->
+            <h:form>
+                <h1><h:outputText value="Ajouter/Retirer de la money"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Id:" for="id" />
+                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
                     
-                </h:form>
-            </h:panelGroup>
-            
+                    <h:outputLabel value="Solde:" for="solde" />
+                    <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
+                    <h:outputLabel value="Choix de l'opération" for="operationsPossibles"/>
+                    <h:selectOneMenu class="form-control" id="operationsPossibles" value="#{compteBancaireOperationMBean.operationsPossibles}" title="Type d'operation" required="true" requiredMessage="The operation type is required"
+                                     >
+                        <f:selectItem itemLabel="Retirer de la Money" itemValue="retirer"/>
+                        <f:selectItem itemLabel="Ajouter de la Money" itemValue="ajouter"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Montant" for="nombre" class="col-sm-2 col-form-label"/>
+                    <h:inputText class="form-control" id="nombre" value="#{compteBancaireOperationMBean.montant}" required="true"/>
+                </h:panelGrid>
+                <h:commandButton class="btn btn-primary btn-block" value="Valider" action="#{compteBancaireOperationMBean.effectuerOperation}"/>
+            </h:form>
         </f:view>
-
 
 
     </ui:define>

@@ -70,7 +70,7 @@ public class Clients extends Personnes implements Serializable {
 
     @Override
     public String toString() {
-        return "Clients{" + "Nom=" + getNom() + "Prenom" + getPrenom() + '}';
+        return "Nom= " + getNom() + ", Prenom " + getPrenom() + " || ";
     }
 
     public List<CompteBancaire> getListeComptesBancaire() {

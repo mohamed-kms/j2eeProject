@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./resources/templates/template_default.xhtml">
+
+            <ui:define name="metadata">
+                metadata
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText id="nom" value="#{conseillersMBean.newClientNom}" title="Nom" />
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText id="prenom" value="#{conseillersMBean.newClientPrenom}" title="Prenom" />
+                    <h:outputLabel value="Adresse:" for="adresse" />
+                    <h:inputText id="adresse" value="#{conseillersMBean.newClientAdresse}" title="Adresse" />
+                </h:panelGrid>
+                <h:commandButton value="Créer le compte" action="#{conseillersMBean.creerClient()}"/>
+            </h:form>
+        </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

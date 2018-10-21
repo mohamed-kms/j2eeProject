@@ -29,6 +29,9 @@ public class ConseillersManager {
         em.persist(object);
     }
     
+    public void creerConseillers(Conseillers conseillers) {
+        persist(conseillers);
+    }
     
     /**
      *

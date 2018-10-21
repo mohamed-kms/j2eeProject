@@ -4,11 +4,32 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ComptesList.xhtml</file>
-            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ClientsList.xhtml</file>
             <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/src/java/managedbeans/CompteBancaireMBean.java</file>
-            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/index.xhtml</file>
-            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/src/java/managedbeans/ClientsMBean.java</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ComptesListForAdmin.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ComptesRetraitDepot.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ConseillersListForAdmin.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/AdminsList.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/src/java/managedbeans/AdministrateursMBean.java</file>
             <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/src/java/managedbeans/CompteBancaireOperationMBean.java</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ClientsOperation.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ConseillerLoginPage.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ComptesTransaction.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/index.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/AccountTypeChoice.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ComptesCloturer.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ClientsVirement.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/AdministrateurLoginPage.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ClientsRetraitDepot.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/CompteVirement.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/resources/templates/template_default.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ConseillersOperation.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ClientsList.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/AdminsOperation.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/src/java/managedbeans/ClientsMBean.java</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/CreerAdmin.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ClientLoginPage.xhtml</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/src/java/managedbeans/ConseillersMBean.java</file>
+            <file>file:/home/mohamed-kms/Documents/MBDS/Amosse/Projet/j2eeProject/MBDS_Boukou_Kadri_Projet_J2EE/MBDS_Boukou_Kadri_Projet_J2EE-war/web/ComptesOperation.xhtml</file>
         </group>
     </open-files>
 </project-private>

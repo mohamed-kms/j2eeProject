@@ -108,10 +108,11 @@
     <h:body>
 
         <div id="left">
-            <ul>  
-                <li><h:link outcome="index.xhtml" value="accueil"/></li>    
-                <li><h:link outcome="ComptesList.xhtml" value="Liste des Comptes"/></li>    
-            </ul>
+            <ui:insert name="left">
+                
+            </ui:insert>
+
+            
         </div>
         <div id="content" class="left_content">
             <ui:insert name="content">Content</ui:insert>

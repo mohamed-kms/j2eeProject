@@ -29,7 +29,8 @@ import javax.persistence.OneToMany;
  * @author mohamed-kms
  */
 @NamedQueries({
-    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT d FROM CompteBancaire d")})
+    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT d FROM CompteBancaire d"),
+    @NamedQuery(name = "CompteBancaire.findAllOperations", query = "SELECT c FROM CompteBancaire c, Operations o WHERE o.compteBancaire = c.id")})
 @Entity
 public class CompteBancaire implements Serializable {
 
@@ -69,7 +70,7 @@ public class CompteBancaire implements Serializable {
     }
     
     public void deposer(int montant){
-        this.solde += montant;
+        solde += montant;
     }
     
     public int retirer(int montant){

@@ -14,24 +14,22 @@
     </ui:define>
 
     <ui:define name="content">
+
         <f:view>
 
 
             <h:form>
                 <h1><h:outputText value="Cloture de compte"/></h1>
-                        <h2>Voulez-vous vraiment supprimer le compte suivant?</h2>
-
+                <h2>Voulez-vous vraiment supprimer le compte suivant?</h2>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
                     <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
-                    <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{compteBancaireOperationMBean.details.nom}" title="Nom" />
+                    <h:outputLabel value="Nom:" for="nom" class="col-sm-2 col-form-label"/>
+                            <h:inputText class="form-control" id="nom" value="#{compteBancaireOperationMBean.details.printProps()}" title="Nom" />
                     <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />
                     <h:commandButton value="OUI" action="#{compteBancaireOperationMBean.cloturerCompte}"/>
                     <h:commandButton value="NON" action="ComptesList.xhtml"/>
-
-
                 </h:panelGrid>
             </h:form>
         </f:view>

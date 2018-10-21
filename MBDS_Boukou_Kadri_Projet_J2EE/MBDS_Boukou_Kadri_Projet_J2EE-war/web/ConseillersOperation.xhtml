@@ -6,7 +6,15 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="metadata">
-        metadata
+    </ui:define>
+
+    <ui:define name="left">
+        <ul>  
+            <li><h:link outcome="ConseillersOperation.xhtml" value="accueil"/></li>    
+            <li><h:link outcome="#{conseillersMBean.comptesGeres()}" value="Liste des comptes gérés"/></li>    
+            <li><h:link outcome="CreerClient.xhtml" value="Ouverture de compte"/></li>    
+            <li><h:link outcome="AccountTypeChoice.xhtml" value="Déconnexion"/></li>
+        </ul>
     </ui:define>
 
     <ui:define name="content">
@@ -25,11 +33,6 @@
                     <h:outputLabel value="Adresse:" for="adresse" />
                     <h:inputText id="adresse" value="#{conseillersMBean.conseiller.adresse}" title="Adresse" />
                 </h:panelGrid>
-                <ul>  
-                    <li><h:link outcome="#{conseillersMBean.comptesGeres()}" value="Liste des comptes gérés"/></li>    
-                    <li><h:link outcome="#{clientsMBean.virement()}" value="Effectuer un virement"/></li>    
-                    <li><h:link outcome="#{compteBancaireMBean.cloturer(clientsMBean.compteChoisi.id)}" value="Cloturer le compte"/></li>
-                </ul>
             </h:form>
         </f:view>
     </ui:define>

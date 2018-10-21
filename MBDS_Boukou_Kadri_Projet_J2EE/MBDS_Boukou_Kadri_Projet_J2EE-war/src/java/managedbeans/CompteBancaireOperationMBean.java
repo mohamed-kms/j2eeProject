@@ -8,6 +8,7 @@ package managedbeans;
 import entities.CompteBancaire;
 import entities.Operations;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -55,6 +56,21 @@ public class CompteBancaireOperationMBean implements Serializable {
     
      public List<CompteBancaire> getComptes(){
         return compteBancaireManager.getAllComptes();
+    }
+     
+    public List<Operations> getMesTransactions(){
+        return compteBancaireManager.findMesOperations(id);
+    }
+    
+    public List<Operations> transactions(Long id){
+        List<Operations> res = new ArrayList<>();
+        for(int i = 0; i < getOperations().size(); i++){
+            Operations ope = getOperations().get(i);
+            if(ope.getCompteBancaire().getId().equals(compteBancaire.getId())){
+                res.add(ope);
+            }
+        }
+        return res;
     }
      
     public Long getCompteDestinataire() {
@@ -117,6 +133,7 @@ public class CompteBancaireOperationMBean implements Serializable {
     
     /**
      * Action handler - renvoie vers la page qui affiche la liste des clients
+     * @return 
      */
     public String list(){
         System.out.println("###LIST###");

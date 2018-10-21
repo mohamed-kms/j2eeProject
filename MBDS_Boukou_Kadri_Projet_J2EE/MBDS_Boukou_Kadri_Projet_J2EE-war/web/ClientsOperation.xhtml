@@ -23,6 +23,7 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
                     <h:outputText id="id" value="#{clientsMBean.client.id}" title="Id" />
+                    <h:link outcome="#{compteBancaireMBean.comptesOperation(item.id)}" value="#{clientsMBean.client.listeComptesBancaire.get(0).getId()}"/>
                     <h:outputLabel value="Nom:" for="nom" />
                     <h:inputText id="nom" value="#{clientsMBean.client.nom}" title="Nom" />
                     <h:outputLabel value="Prenom:" for="prenom" />

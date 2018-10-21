@@ -1,14 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      template="./resources/templates/template_default.xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./resources/templates/template_default.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:define name="metadata">
+
     </ui:define>
-    
+
     <ui:define name="left">
         <ul>  
             <li><h:link outcome="AdminsOperation.xhtml" value="accueil"/></li>    
@@ -16,48 +18,44 @@
             <li><h:link outcome="ClientsList.xhtml" value="Liste de tous les Clients"/></li>    
             <li><h:link outcome="ConseillersListForAdmin.xhtml" value="Liste de tous les Conseillers"/></li>    
             <li><h:link outcome="AdminsList.xhtml" value="Liste de tous les Administrateurs"/></li>    
-            <li><h:link outcome="ComptesListForAdmin.xhtml" value="Créer nouveau client"/></li>    
-            <li><h:link outcome="ComptesListForAdmin.xhtml" value="Créer nouveau conseiller"/></li>    
-            <li><h:link outcome="ComptesListForAdmin.xhtml" value="Créer nouvel administrateur"/></li>  
+            <li><h:link outcome="CreerConseiller.xhtml" value="Créer nouveau conseiller"/></li>    
+            <li><h:link outcome="CreerAdmin.xhtml" value="Créer nouvel administrateur"/></li>    
             <li><h:link outcome="AccountTypeChoice.xhtml" value="Déconnexion"/></li>
         </ul>
     </ui:define>
 
     <ui:define name="content">
+
         <f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="Liste des clients de la banque"/></h1>
-                <h:dataTable value="#{clientsMBean.clients}" var="item">
+            <h:form class="table">
+                <h1><h:outputText value="Liste des comptes bancaires"/></h1>
+                <h:dataTable value="#{compteBancaireMBean.comptes}" var="item"
+                             rows="10">
                     <h:column>
-                        <f:facet name="header">
+                        <f:facet class="thead-dark" name="header">
                             <h:outputText value="Id"/>
                         </f:facet>
-                        <h:link outcome="#{clientsMBean.clientsOperation(item.id)}" value="#{item.id}"/>
+
+                        <h:outputText value="#{item.id}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">
+                        <f:facet class="thead-dark" name="header">
                             <h:outputText value="Nom"/>
                         </f:facet>
-                        <h:outputText value="#{item.nom}"/>
+                        <h:outputText value="#{item.proprietaires}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Prenom"/>
+                        <f:facet class="thead-dark" name="header">
+                            <h:outputText value="Solde"/>
                         </f:facet>
-                        <h:outputText value="#{item.prenom}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Adresse"/>
-                        </f:facet>
-                        <h:outputText value="#{item.adresse}"/>
+                        <h:outputText value="#{item.solde}"/>
                     </h:column>
                 </h:dataTable>
             </h:form>
         </f:view>
 
 
+
     </ui:define>
+
 </ui:composition>

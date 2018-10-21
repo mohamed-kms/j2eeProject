@@ -31,6 +31,12 @@ public class AdminsManager {
     public void creerAdministrateurs(Administrateurs administrateur) {
         persist(administrateur);
     }
+    
+    public void initBase() {
+        Administrateurs a = new Administrateurs("EDOUARD", "Amosse", "Nice");
+        creerAdministrateurs(a);
+
+    }
 
     /**
      *

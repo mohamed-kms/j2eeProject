@@ -1,34 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      template="./resources/templates/template_nav.xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./resources/templates/template_default.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:define name="metadata">
-        metadata
     </ui:define>
 
     <ui:define name="left">
-
+        <ul>  
+            <li><h:link outcome="ConseillersOperation.xhtml" value="accueil"/></li>    
+            <li><h:link outcome="#{conseillersMBean.comptesGeres()}" value="Liste des comptes gérés"/></li>    
+            <li><h:link outcome="CreerClient.xhtml" value="Ouverture de compte"/></li>    
+            <li><h:link outcome="AccountTypeChoice.xhtml" value="Déconnexion"/></li>
+        </ul>
     </ui:define>
 
     <ui:define name="content">
-        
+
         <f:view>
 
 
             <h:form class="table">
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{compteBancaireMBean.comptes}" var="item"
+                <h1><h:outputText value="MES COMPTES EN CHARGE"/></h1>
+                <h:dataTable value="#{conseillersMBean.conseiller.comptesGeres}" var="item"
                              rows="10">
                     <h:column>
                         <f:facet class="thead-dark" name="header">
                             <h:outputText value="Id"/>
                         </f:facet>
-                        
+
                         <h:link outcome="#{compteBancaireMBean.comptesOperation(item.id)}" value="#{item.id}"/>
                     </h:column>
                     <h:column>

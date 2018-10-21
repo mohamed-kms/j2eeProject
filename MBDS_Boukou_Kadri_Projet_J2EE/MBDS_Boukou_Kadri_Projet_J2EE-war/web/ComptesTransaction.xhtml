@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./resources/templates/template_default.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{compteBancaireOperationMBean.id}"
+                         required="true"/>
+            <f:viewAction action="#{compteBancaireOperationMBean.loadCompteBancaire()}"/>
+            <f:viewParam name="compteDestinataire" value="#{compteBancaireOperationMBean.compteDestinataire}"/>
+        </f:metadata> 
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Mouvements du compte"/></h1>
+                <h:dataTable value="#{compteBancaireOperationMBean.details.operations}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id de l'opération"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Type d'opération"/>
+                        </f:facet>
+                        <h:outputText value="#{item.operationName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Montant"/>
+                        </f:facet>
+                        <h:outputText value="#{item.montant}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Propriétaire"/>
+                        </f:facet>
+                        <h:outputText value="#{item.compteBancaire.printProps()}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+    </ui:define>
+
+</ui:composition>

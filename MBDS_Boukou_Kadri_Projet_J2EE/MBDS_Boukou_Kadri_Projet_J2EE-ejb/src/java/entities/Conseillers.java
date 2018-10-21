@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -31,15 +32,15 @@ public class Conseillers extends Personnes implements Serializable {
     private String username;
     private String password;
     
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     private List<CompteBancaire> comptesGeres;
 
     public Conseillers() {}
     
     public Conseillers(String nom, String prenom, String adresse) {
         super(nom, prenom, adresse);
-        this.username = nom + "CONS" + id;
-        this.password = prenom + "cpswd" + id;
+        this.username = nom + "CONS";
+        this.password = prenom + "cpswd";
     }
 
     public String getUsername() {
@@ -57,6 +58,16 @@ public class Conseillers extends Personnes implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<CompteBancaire> getComptesGeres() {
+        return comptesGeres;
+    }
+
+    public void setComptesGeres(List<CompteBancaire> comptesGeres) {
+        this.comptesGeres = comptesGeres;
+    }
+    
+    
     
    
     @Override

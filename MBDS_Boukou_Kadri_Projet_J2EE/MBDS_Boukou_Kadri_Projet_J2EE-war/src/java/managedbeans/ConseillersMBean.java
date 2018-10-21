@@ -5,13 +5,19 @@
  */
 package managedbeans;
 
+import entities.Clients;
+import entities.CompteBancaire;
 import entities.Conseillers;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
+import session.ClientsManager;
 import session.ConseillersManager;
 import session.GestionDeCompteBancaire;
 
@@ -23,11 +29,17 @@ import session.GestionDeCompteBancaire;
 @SessionScoped
 public class ConseillersMBean implements Serializable{
 
+    @EJB
+    private ClientsManager clientsManager;
+
     
     private Long id;
+    private String newClientNom;
+    private String newClientPrenom;
+    private String newClientAdresse;
     private String username;
     private String password;
-    private Conseillers Conseiller;
+    private Conseillers conseiller;
     
     @EJB
     private ConseillersManager conseillersManager;
@@ -50,12 +62,49 @@ public class ConseillersMBean implements Serializable{
         this.id = id;
     }
 
+    public String getNewClientNom() {
+        return newClientNom;
+    }
+
+    public void setNewClientNom(String newClientNom) {
+        this.newClientNom = newClientNom;
+    }
+
+    public String getNewClientPrenom() {
+        return newClientPrenom;
+    }
+
+    public void setNewClientPrenom(String newClientPrenom) {
+        this.newClientPrenom = newClientPrenom;
+    }
+
+    public String getNewClientAdresse() {
+        return newClientAdresse;
+    }
+
+    public void setNewClientAdresse(String newClientAdresse) {
+        this.newClientAdresse = newClientAdresse;
+    }
+    
+    public void creerClient(){
+        Clients newClient = new Clients(newClientNom, newClientPrenom, newClientAdresse);
+        Set<Clients> proprietaires = new HashSet<>();
+        proprietaires.add(newClient);
+        CompteBancaire compteBancaire = new CompteBancaire(proprietaires, 0, conseiller);
+        List<CompteBancaire> listeComptesBancaire = new ArrayList<>();
+        listeComptesBancaire.add(compteBancaire);
+        newClient.setListeComptesBancaire(listeComptesBancaire);
+        conseiller.getComptesGeres().add(compteBancaire);
+        this.clientsManager.creerClient(newClient);
+        //this.conseillersManager.update(conseiller);
+    }
+
     public Conseillers getConseiller() {
-        return Conseiller;
+        return conseiller;
     }
 
     public void setConseiller(Conseillers Conseiller) {
-        this.Conseiller = Conseiller;
+        this.conseiller = Conseiller;
     }
     
     
@@ -86,8 +135,8 @@ public class ConseillersMBean implements Serializable{
 
     public String checkLogin(){
         if(conseillersManager.getAllUsernames().contains(username) && conseillersManager.getAllPasswords().contains(password)){
-            this.Conseiller = conseillersManager.findByUsername(username);
-            this.id = Conseiller.getId();
+            this.conseiller = conseillersManager.findByUsername(username);
+            this.id = conseiller.getId();
             return conseillersOperation(this.id);
         }else{
             return "ConseillerLoginPage";

@@ -24,7 +24,7 @@
                     <h:inputText id="prenom" value="#{clientsMBean.client.prenom}" title="Prenom" />
                     <h:outputLabel value="Adresse:" for="adresse" />
                     <h:inputText id="adresse" value="#{clientsMBean.client.adresse}" title="Adresse" />
-                    <h:outputLabel value="Choix du compte" for="CompteBancaire"/>
+                    <h:outputLabel value="Choix du compte:" for="compteBancaire"/>
                     <h:selectOneMenu class="form-control" id="compteChoisi" value="#{clientsMBean.idCompteChoisi}" title="Mes comptes bancaire" required="true" requiredMessage="The Zip field is required."
                                      >
                         <f:selectItems value="#{clientsMBean.client.listeComptesBancaire}"

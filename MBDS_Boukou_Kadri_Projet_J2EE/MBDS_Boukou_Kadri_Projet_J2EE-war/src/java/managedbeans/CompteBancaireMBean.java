@@ -47,6 +47,10 @@ public class CompteBancaireMBean implements Serializable{
     public String cloturer(int compteId){
         return "ComptesCloturer?id = " + compteId;
     }
+    
+    public String mesOperations(Long compteId){
+        return "ComptesTransaction?id=" + compteId;
+    }
 
     /**
      * Creates a new instance of CompteBancaireMBean

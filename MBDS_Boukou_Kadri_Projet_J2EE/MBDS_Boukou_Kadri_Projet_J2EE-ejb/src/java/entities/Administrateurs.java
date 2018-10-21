@@ -33,9 +33,29 @@ public class Administrateurs extends Personnes implements Serializable {
     public Administrateurs() {
     }
 
-    public Administrateurs(Long id, String nom, String prenom, String adresse) {
+    public Administrateurs(String nom, String prenom, String adresse) {
         super(nom, prenom, adresse);
+        this.username = nom + "ADMIN";
+        this.password = prenom + "adpswd";
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 
     
 }
