@@ -32,7 +32,7 @@
                 <h1><h:outputText value="Ajouter/Retirer de la money"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
+                    <h:outputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
                     
                     <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteBancaireOperationMBean.details.solde}" title="Solde" />

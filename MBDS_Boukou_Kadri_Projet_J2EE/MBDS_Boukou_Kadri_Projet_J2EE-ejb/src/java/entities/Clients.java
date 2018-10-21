@@ -48,8 +48,8 @@ public class Clients extends Personnes implements Serializable {
 
     public Clients(String nom, String prenom, String adresse) {
         super(nom, prenom, adresse);
-        this.username = this.nom + "CL" + this.id;
-        this.password = this.prenom + "pswd" + this.id;
+        this.username = this.nom + "CL";
+        this.password = this.prenom + "pswd";
     }
 
     public String getUsername() {
