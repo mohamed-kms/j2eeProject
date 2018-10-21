@@ -6,36 +6,36 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
- * @author grace
+ * @author mohamed-kms
  */
+
+@NamedQueries({
+    @NamedQuery(name = "Administrateurs.findAll", query = "SELECT d FROM Administrateurs d"),
+    @NamedQuery(name = "Administrateurs.findByAdministrateurId", query = "SELECT c FROM Administrateurs c WHERE c.id = :id"),
+    @NamedQuery(name = "Administrateurs.findAllUsernames", query = "SELECT c.username FROM Administrateurs c"),
+    @NamedQuery(name = "Administrateurs.findAllPasswords", query = "SELECT c.password FROM Administrateurs c"),
+    @NamedQuery(name = "Administrateurs.findByUsername", query = "SELECT c FROM Administrateurs c WHERE c.username = :username")})
+
 @Entity
 @DiscriminatorValue("ADMINISTRATEUR")
 public class Administrateurs extends Personnes implements Serializable {
+
+    private String username;
+    private String password;
     
-    @OneToMany()
-    private List<Conseillers> listConseillers;  // Un administrateurs a des Conseillers
-    
-    public Administrateurs() {}
-    
+    public Administrateurs() {
+    }
+
     public Administrateurs(Long id, String nom, String prenom, String adresse) {
         super(nom, prenom, adresse);
     }
-    
-    @Override
-    public String toString() {
-        return "Client{" + "Nom : " + getNom() + " "
-                + "Prenom : " + getPrenom() + " "
-                + "Adresse : " + getAdresse() + "}";
-    }
 
+    
 }
