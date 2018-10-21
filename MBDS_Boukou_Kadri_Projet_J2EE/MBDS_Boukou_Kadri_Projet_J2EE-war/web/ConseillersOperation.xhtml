@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./resources/templates/template_default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="metadata">
+        metadata
+    </ui:define>
+
+    <ui:define name="content">
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="MES OPERATIONS"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Id:" for="id" />
+                    <h:outputText id="id" value="#{conseillersMBean.conseiller.id}" title="Id" />
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText id="nom" value="#{conseillersMBean.conseiller.nom}" title="Nom" />
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText id="prenom" value="#{conseillersMBean.conseiller.prenom}" title="Prenom" />
+                    <h:outputLabel value="Adresse:" for="adresse" />
+                    <h:inputText id="adresse" value="#{conseillersMBean.conseiller.adresse}" title="Adresse" />
+                </h:panelGrid>
+                <ul>  
+                    <li><h:link outcome="#{conseillersMBean.comptesGeres()}" value="Liste des comptes gérés"/></li>    
+                    <li><h:link outcome="#{clientsMBean.virement()}" value="Effectuer un virement"/></li>    
+                    <li><h:link outcome="#{compteBancaireMBean.cloturer(clientsMBean.compteChoisi.id)}" value="Cloturer le compte"/></li>
+                </ul>
+            </h:form>
+        </f:view>
+    </ui:define>
+
+</ui:composition>

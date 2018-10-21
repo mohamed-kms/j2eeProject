@@ -8,9 +8,17 @@
     </h:head>
     <h:body>
         <f:view>
+
+
             <h:form>
-                <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{compteBancaireOperationMBean.details.id}" title="Id" />
+                <h1>CONNEXION</h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Username:" for="username" />
+                    <h:inputText id="username" value="#{conseillersMBean.username}" title="Username" />
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputSecret id="password" value="#{conseillersMBean.password}" title="Password" />
+                    <h:commandButton value="Valider" action="#{conseillersMBean.checkLogin()}"/>
+                </h:panelGrid>
             </h:form>
         </f:view>
 
