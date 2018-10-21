@@ -7,16 +7,14 @@
         <title>Clients Login Page</title>
     </h:head>
     <f:metadata>
-            <f:viewParam name="id" value="1"
-                         required="true"/>
-            <f:viewAction action="#{clientsMBean.loadClient()}"/>
-        </f:metadata> 
+
+    </f:metadata> 
     <h:body>
         <f:view>
 
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
+                <h1>CONNEXION</h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Username:" for="username" />
                     <h:inputText id="username" value="#{clientsMBean.username}" title="Username" />

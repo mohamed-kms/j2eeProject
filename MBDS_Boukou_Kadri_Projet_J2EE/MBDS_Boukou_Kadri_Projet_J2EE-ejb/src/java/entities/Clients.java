@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 
 /**
  *
-<<<<<<< HEAD
  * @author mohamed-kms
  */
 
@@ -34,15 +33,14 @@ import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("CLIENTS")
-public class Clients extends Personne implements Serializable {
+public class Clients extends Personnes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String username;
     private String password;
-    private Map<String, String> clientsLoginDict = new HashMap<>();
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name = "CLIENT_ASSOC_COMPTE", joinColumns = @JoinColumn(name = "CLIENT_ID"), inverseJoinColumns = @JoinColumn(name = "COMPTE_ID"))
+    //@JoinTable(name = "CLIENT_ASSOC_COMPTE", joinColumns = @JoinColumn(name = "CLIENT_ID"), inverseJoinColumns = @JoinColumn(name = "COMPTE_ID"))
     private List<CompteBancaire> listeComptesBancaire;
 
     public Clients() {
@@ -52,7 +50,6 @@ public class Clients extends Personne implements Serializable {
         super(nom, prenom, adresse);
         this.username = this.nom + "CL" + this.id;
         this.password = this.prenom + "pswd" + this.id;
-        this.clientsLoginDict.put(username, password);
     }
 
     public String getUsername() {
@@ -69,14 +66,6 @@ public class Clients extends Personne implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Map<String, String> getClientsLoginDict() {
-        return clientsLoginDict;
-    }
-
-    public void setClientsLoginDict(Map<String, String> clientsLoginDict) {
-        this.clientsLoginDict = clientsLoginDict;
     }
 
     @Override

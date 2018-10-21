@@ -9,6 +9,7 @@ import entities.Clients;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author mohamed-kms
  */
-@Stateless
+@Stateful
 @LocalBean
 public class ClientsManager {
 

@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import session.ClientsManager;
 import session.GestionDeCompteBancaire;
@@ -30,6 +32,7 @@ public class ClientsMBean implements Serializable{
     private String username;
     private String password;
     private Long idCompteChoisi;
+    private Long compteDestinataire;
     private CompteBancaire compteChoisi;
     private String operationsPossibles;
         private int montant;
@@ -82,6 +85,16 @@ public class ClientsMBean implements Serializable{
         this.operationsPossibles = operationsPossibles;
     }
 
+    public Long getCompteDestinataire() {
+        return compteDestinataire;
+    }
+
+    public void setCompteDestinataire(Long compteDestinataire) {
+        this.compteDestinataire = compteDestinataire;
+    }
+    
+    
+
     public String effectuerOperation(){
         CompteBancaire compteDestination =
             compteBancaireManager.findById((long) idCompteChoisi);
@@ -95,6 +108,50 @@ public class ClientsMBean implements Serializable{
         compteBancaireManager.update(compteDestination);
         return clientsOperation(id);
     }    
+    
+    public void transferer() {
+    // vrai si on peut faire le transfert
+    // permet d'afficher toutes les messages d'erreur en 1 fois
+    boolean ok = true;
+    CompteBancaire compteSource = compteBancaireManager.findById((long) idCompteChoisi);;
+        System.out.println(compteSource);
+    if (compteSource == null) {
+      String msg = "Compte source n'existe pas";
+      FacesMessage facesMsg =
+              new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+      FacesContext.getCurrentInstance().addMessage("transfert:source", facesMsg);
+      ok = false;
+    }
+    CompteBancaire compteDestination =
+            compteBancaireManager.findById((long) compteDestinataire);
+            System.out.println(compteDestination);
+
+    if (compteDestination == null) {
+      String msg = "Compte destination n'existe pas";
+      FacesMessage facesMsg =
+              new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+      FacesContext.getCurrentInstance().addMessage("transfert:destination", facesMsg);
+      ok = false;
+    }
+    // Tester s'il y a assez d'argent sur le compte source
+    if (compteSource != null) {
+      double soldeCompteSource = compteSource.getSolde();
+      if (soldeCompteSource < montant) {
+        String msg = "Pas assez d'argent sur le compte de "
+                + compteSource.getProprietaires();
+        FacesMessage facesMsg =
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+        FacesContext.getCurrentInstance().addMessage("transfert:montant", facesMsg);
+        ok = false;
+      }
+    }
+    if (ok) {
+        operationsManager.creerOperation(new Operations("virement rentrant", montant, compteSource));
+        operationsManager.creerOperation(new Operations("virement sortant", montant, compteDestination));
+      compteBancaireManager.transferer(compteSource, compteDestination,
+              montant);
+    }
+  }
 
     public int getMontant() {
         return montant;
